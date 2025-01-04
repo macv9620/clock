@@ -1,0 +1,74 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #fff; /* White background for the whole page */
+    font-family: 'Courier New', Courier, monospace; /* Monospaced font for digital effect */
+    color: #000; /* Black color for digits */
+  }
+  
+  /* Digital Clock Container */
+  .digital-clock {
+    display: flex;
+    flex-direction: column; /* Stack time and date vertically */
+    justify-content: center;
+    align-items: center;
+    font-size: 10vw; /* Responsive font size based on viewport width */
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    text-align: center;
+    background-color: #fff; /* White background for the clock */
+    border-radius: 20px;
+    padding: 2vw 4vw; /* Responsive padding using viewport width */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for the clock */
+    min-width: 200px; /* Prevent clock from getting too small */
+    min-height: 150px; /* Prevent clock from getting too small */
+    margin-bottom: 20px;
+  }
+  
+  /* Time Display */
+  .clock-time {
+    display: flex;
+    font-size: 1.6rem; /* Font size for the time */
+    color: #000; /* Black color for the digits */
+  }
+  
+  /* Date Display */
+  .clock-date {
+    font-size: 2rem; /* Smaller font size for the date */
+    margin-top: 10px; /* Space between time and date */
+    font-weight: bold; /* Bold date for emphasis */
+    color: #333; /* Darker gray for the date text */
+  }
+  
+  /* Media Queries for Extra Small Screens (Mobile) */
+  @media (max-width: 600px) {
+    .digital-clock {
+      font-size: 15vw; /* Larger text for mobile screens */
+      padding: 4vw; /* Increase padding on smaller screens */
+    }
+  
+    .clock-date {
+      font-size: 1rem; /* Larger font for the date on mobile */
+    }
+  }
+  
+  /* Media Queries for Larger Screens */
+  @media (min-width: 1200px) {
+    .digital-clock {
+      font-size: 5vw; /* Smaller text for large screens */
+      padding: 1.5vw 3vw; /* Adjust padding for large screens */
+    }
+  
+    .clock-date {
+      font-size: 1.5rem; /* Smaller font size for the date on large screens */
+    }
+  }

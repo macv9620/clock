@@ -40,3 +40,81 @@
 .read-the-docs {
   color: #888;
 }
+
+/* App.css */
+
+/* The confetti container will take up the whole screen and cover all elements */
+.confetti-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 1;
+
+  animation: confetti-container-animation 5s infinite ease-in-out;
+
+}
+
+/* Individual confetti pieces */
+.confetti {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+  animation: confetti-animation 5s infinite ease-in-out;
+}
+
+/* Keyframe animation for confetti falling */
+@keyframes confetti-animation {
+  0% {
+    transform: translateY(0) rotate(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(600px) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@keyframes confetti-container-animation {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+
+.confetti:nth-child(odd) {
+  background-color: blue;
+}
+.confetti:nth-child(even) {
+  background-color: green;
+}
+
+/* Add more confetti pieces to cover the screen */
+.confetti:nth-child(3n) {
+  background-color: orange;
+}
+
+.confetti:nth-child(4n) {
+  background-color: pink;
+}
+
+/* Add some randomness to the positions of the confetti */
+.confetti-container .confetti:nth-child(odd) {
+  animation-duration: 2s;
+  animation-delay: 0s;
+}
+
+.confetti-container .confetti:nth-child(even) {
+  animation-duration: 3s;
+  animation-delay: 0.5s;
+}

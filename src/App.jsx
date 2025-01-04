@@ -61,7 +61,7 @@ function App() {
         {showWelcome && (
           <div className={`welcome-screen ${showWelcome ? 'fade-out' : ''}`}>
             <div>¡Bienvenida!</div>
-            <img src='ilustracion_tdc.png' width={'100px'}/>
+            <img src='https://raw.githubusercontent.com/macv9620/clock/d0d27101a46a260a66c508e2ca26392ce89441f1/src/assets/ilustracion_tdc.svg' width={'100px'}/>
           </div>
         )}
 

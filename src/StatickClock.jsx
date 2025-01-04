@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Clock.css'; // Make sure your CSS is properly defined
 import dayjs from 'dayjs'; // Import dayjs for date formatting
 import 'dayjs/locale/es'; // Import the Spanish locale for dayjs
@@ -7,9 +7,17 @@ import 'dayjs/locale/es'; // Import the Spanish locale for dayjs
 function StaticClock({ staticDateTime }) {
   console.log('Received Date:', staticDateTime); // Check the received prop
 
-  // Initialize the time with the passed staticDateTime and date in Spanish locale
-  const [time] = useState(dayjs(staticDateTime, 'dddd DD/MM/YYYY hh:mm:ss A')); 
-  const [date] = useState(dayjs(staticDateTime, 'dddd DD/MM/YYYY hh:mm:ss A').locale('es').format('D MMMM YYYY')); 
+  // Initialize the state variables for time and date
+  const [time, setTime] = useState(dayjs(staticDateTime, 'dddd DD/MM/YYYY hh:mm:ss A'));
+  const [date, setDate] = useState(dayjs(staticDateTime, 'dddd DD/MM/YYYY hh:mm:ss A').locale('es').format('D MMMM YYYY'));
+
+  // Use effect to update time and date whenever staticDateTime changes
+  useEffect(() => {
+    // Update time and date when staticDateTime prop changes
+    const newTime = dayjs(staticDateTime, 'dddd DD/MM/YYYY hh:mm:ss A');
+    setTime(newTime);
+    setDate(newTime.locale('es').format('D MMMM YYYY'));
+  }, [staticDateTime]); // Dependency array: trigger effect when staticDateTime changes
 
   // Format the current time in "hh:mm:ss A" format (12-hour format with AM/PM)
   const formattedTime = time.format('dddd hh:mm:ss A');

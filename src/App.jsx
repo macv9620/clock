@@ -30,7 +30,7 @@ function App() {
       setConfetti(true);
       setTimeout(() => {
         setTimeout(() => setConfetti(false)); // Confetti disappears after the fade-out transition
-      }, 5000); // Confetti lasts for 5 seconds
+      }, 4500); // Confetti lasts for 5 seconds
     } else {
       alert('Por favor, selecciona una fecha y hora.');
     }
@@ -53,6 +53,7 @@ function App() {
             onChange={(newValue) => setSelectedDateTime(newValue)}
             renderInput={(params) => <TextField {...params} fullWidth />}
             format="DD/MM/YYYY hh:mm A"
+            onOpen={()=> setHoursDifference(null)}
           />
           <Button
             variant="contained"

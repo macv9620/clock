@@ -61,7 +61,7 @@ function App() {
         {showWelcome && (
           <div className={`welcome-screen ${showWelcome ? 'fade-out' : ''}`}>
             <div>¡Bienvenida!</div>
-            <img src='https://feriadelavivienda.co/wp-content/uploads/2020/10/logo-bancolombia-2.png' width={'200px'}/>
+            <img src='ilustracion_tdc.png' width={'100px'}/>
           </div>
         )}
 

@@ -118,3 +118,33 @@
   animation-duration: 3s;
   animation-delay: 0.5s;
 }
+/* Animación de fade-out para el texto de bienvenida */
+.fade-out {
+  animation: fadeOut 3s ease-in-out forwards;
+
+}
+
+/* Animación para desvanecer */
+@keyframes fadeOut {
+  from {
+    opacity: 1; /* Comienza visible */
+  }
+  to {
+    opacity: 0; /* Desaparece gradualmente */
+  }
+}
+
+.welcome-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 2rem;
+  font-family: 'Courier New', Courier, monospace;
+}

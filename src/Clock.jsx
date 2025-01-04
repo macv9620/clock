@@ -21,6 +21,7 @@ function Clock() {
   
     return (
       <div className="digital-clock">
+        <div className="clock-title">Fecha actual:</div>
         {/* Display the time */}
         <div className="clock-time">
           {formattedTime}

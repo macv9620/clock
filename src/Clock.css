@@ -42,6 +42,13 @@
   }
   
   /* Date Display */
+  .clock-title {
+    font-size: 1rem; /* Smaller font size for the date */
+    margin-top: 10px; /* Space between time and date */
+    font-weight:bolder; /* Bold date for emphasis */
+    color: #1d03a1; /* Darker gray for the date text */
+  }
+
   .clock-date {
     font-size: 2rem; /* Smaller font size for the date */
     margin-top: 10px; /* Space between time and date */

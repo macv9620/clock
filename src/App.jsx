@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -20,6 +20,8 @@ function App() {
   const [selectedDateTime, setSelectedDateTime] = useState(null); // Selected date from picker
   const [hoursDifference, setHoursDifference] = useState(null); // To store the calculated difference in hours
   const [confetti, setConfetti] = useState(false); // State to trigger confetti animation
+  const [showWelcome, setShowWelcome] = useState(true); // State to control welcome screen visibility
+
   // Function to calculate the difference in hours
   const calculateDifference = () => {
     if (selectedDateTime) {
@@ -29,7 +31,7 @@ function App() {
       // Trigger confetti animation for 5 seconds
       setConfetti(true);
       setTimeout(() => {
-        setTimeout(() => setConfetti(false)); // Confetti disappears after the fade-out transition
+        setConfetti(false); // Confetti disappears after the fade-out transition
       }, 4500); // Confetti lasts for 5 seconds
     } else {
       alert('Por favor, selecciona una fecha y hora.');
@@ -42,18 +44,49 @@ function App() {
     },
   });
 
+  // Set up the welcome screen to disappear after 5 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowWelcome(false); // Hide the welcome screen after 5 seconds
+    }, 5000);
+
+    // Clear the timer if the component is unmounted
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="zh-cn">
+        {/* Show Welcome Screen */}
+        {showWelcome && (
+          <div className={`welcome-screen ${showWelcome ? 'fade-out' : ''}`}>
+            <div>¡Bienvenida!</div>
+          </div>
+        )}
+
         <div style={{ padding: '20px' }}>
           <Clock />
           <DateTimePicker
-            label="💘 Mor cuando va a caer 💞"
+            label="🕓 Datos de apertura"
             value={selectedDateTime}
             onChange={(newValue) => setSelectedDateTime(newValue)}
-            renderInput={(params) => <TextField {...params} fullWidth />}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                fullWidth
+                sx={{
+                  '.MuiInputBase-input': {
+                    textAlign: 'center', // Center placeholder text
+                  },
+                  '.MuiInputLabel-root': {
+                    textAlign: 'center', // Center label text (optional)
+                  },
+                }}
+              />
+            )}
             format="DD/MM/YYYY hh:mm A"
-            onOpen={()=> setHoursDifference(null)}
+            onOpen={() => setHoursDifference(null)}
+            sx={{ width: '187px' }} // Set a custom width here
           />
           <Button
             variant="contained"
@@ -62,13 +95,18 @@ function App() {
             style={{ marginTop: '20px' }}
             disabled={!selectedDateTime} // Disable button if no date is selected
           >
-            En cuantas horas cae
+            Horas a programar
           </Button>
 
           {hoursDifference !== null && (
             <>
-              <Typography variant="h6" style={{ marginTop: '20px' }}>
-                En {hoursDifference.toFixed(2)} horas será
+              <Typography
+                fontFamily={'Courier New'}
+                fontWeight={700}
+                variant="h6"
+                style={{ marginTop: '20px', marginBottom: '20px' }}
+              >
+                En {hoursDifference.toFixed(2)} horas será:
               </Typography>
               <StaticClock staticDateTime={selectedDateTime.format('dddd DD/MM/YYYY hh:mm:ss A')} />
             </>
@@ -77,13 +115,8 @@ function App() {
 
         {/* Confetti Animation */}
         {confetti && (
-          <div className='confetti-container'>
-          <Confetti
-            width={window.innerWidth}
-            height={window.innerHeight}
-            numberOfPieces={300}
-            tweenDuration={5000}
-          />
+          <div className="confetti-container">
+            <Confetti width={window.innerWidth} height={window.innerHeight} numberOfPieces={300} tweenDuration={5000} />
           </div>
         )}
       </LocalizationProvider>

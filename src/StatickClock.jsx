@@ -25,6 +25,7 @@ function StaticClock({ staticDateTime }) {
   return (
     <div className="digital-clock">
       {/* Display the time */}
+      <div className="clock-title">Fecha apertura:</div>
       <div className="clock-time">
         {formattedTime}
       </div>
